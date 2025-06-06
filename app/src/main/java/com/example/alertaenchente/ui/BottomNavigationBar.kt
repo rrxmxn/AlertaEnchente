@@ -4,10 +4,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 
@@ -20,7 +18,6 @@ fun BottomNavigationBar(navController: NavController) {
         BottomNavItem.Alertas,
         BottomNavItem.Previsao,
         BottomNavItem.Contatos
-        // BottomNavItem.Configuracoes // Ativa se desejar
     )
 
     NavigationBar {
@@ -32,10 +29,9 @@ fun BottomNavigationBar(navController: NavController) {
                 icon = {
                     Icon(
                         painter = painterResource(id = item.icon),
-                        contentDescription = item.route // <- Adicionado
+                        contentDescription = item.route
                     )
                 },
-//                label = { Text(text = stringResource(id = item.title)) },
                 selected = currentRoute == item.route,
                 onClick = {
                     if (currentRoute != item.route) {

@@ -13,5 +13,4 @@ sealed class BottomNavItem(
     object Alertas : BottomNavItem("alertas", R.drawable.ic_alert)
     object Previsao : BottomNavItem("previsao", R.drawable.ic_cloud)
     object Contatos : BottomNavItem("contatos", R.drawable.ic_contact)
-//    object Configuracoes : BottomNavItem("configuracoes", R.drawable.ic_settings)
 }

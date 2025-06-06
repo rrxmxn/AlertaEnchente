@@ -14,9 +14,9 @@ fun AppNavigation(navController: NavHostController) {
         composable("home") {
             HomeScreen(navController)
         }
-//        composable("mapa") {
-//            MapaScreen(navController)
-//        }
+        composable("mapa") {
+            MapaScreen(navController)
+        }
         composable("alertas") {
             AlertasScreen(navController)
         }
@@ -29,20 +29,5 @@ fun AppNavigation(navController: NavHostController) {
         composable("configuracoes") {
             ConfiguracoesScreen(navController)
         }
-        composable("mapa") {
-            TelaMapaScreen()
-        }
-        composable("alertas") {
-            TelaAlertasScreen()
-        }
-        composable("previsao") {
-            TelaPrevisaoScreen()
-        }
-        composable("contatos") {
-            TelaContatosScreen()
-        }
-//        composable("configuracoes") {
-//            TelaConfiguracoesScreen()
-//        }
     }
 }

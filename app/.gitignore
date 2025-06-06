@@ -1,1 +1,93 @@
-/build
+# Arquivos e diretórios do Gradle
+.gradle/
+build/
+.idea/
+captures/
+.externalNativeBuild/
+.cxx/
+*.iml
+local.properties
+
+# Arquivos gerados
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# Log Files
+*.log
+.navigation/
+
+# Android Studio
+.idea/
+.idea/caches/
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.DS_Store
+
+# Keystore files
+*.jks
+*.keystore
+
+# Google Services (ex: APIs ou Firebase)
+google-services.json
+
+# Arquivos específicos do Gradle
+.gradle
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+# Eclipse
+bin/
+gen/
+out/
+.classpath
+.project
+.settings/
+
+# Arquivos específicos do Kotlin
+*.kotlin_module
+
+# Arquivos temporários
+*~
+*.tmp
+*.bak
+*.swp
+
+# VS Code
+.vscode/
+.settings/
+
+# Keystore
+keystore.properties
+
+# Arquivos específicos do Maven (caso esteja usando)
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+
+# Testes
+app/src/test/java/com/example/alertaenchente/ExampleUnitTest.kt
+
+# Proguard
+proguard-rules.pro
+proguard-project.txt
+
+# Crashlytics
+fabric.properties
+crashlytics-build.properties
+
+# Outros
+*.iws
+*.ipr
+*.hprof
