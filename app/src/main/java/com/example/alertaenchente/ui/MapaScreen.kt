@@ -13,75 +13,41 @@ import androidx.lifecycle.LifecycleEventObserver
 import com.google.maps.android.compose.*
 import androidx.compose.material3.Text
 import androidx.navigation.NavHostController
-import com.google.android.gms.maps.model.LatLng
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
+import com.google.accompanist.permissions.isGranted
+import com.google.accompanist.permissions.rememberPermissionState
 import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
 
-@OptIn(ExperimentalMaterial3Api::class)
+
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun MapaScreen(navController: NavHostController) {
+fun MapaScreen() {
     val context = LocalContext.current
 
-    val initialPosition = LatLng(-30.0346, -51.2177)
-    val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(initialPosition, 12f)
+    val permissionState = rememberPermissionState(
+        android.Manifest.permission.ACCESS_FINE_LOCATION
+    )
+
+    LaunchedEffect(Unit) {
+        permissionState.launchPermissionRequest()
     }
 
-    var hasLocationPermission by remember {
-        mutableStateOf(
-            ActivityCompat.checkSelfPermission(
-                context, Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
+    val cameraPositionState = rememberCameraPositionState {
+        position = CameraPosition.fromLatLngZoom(
+            LatLng(-23.5505, -46.6333), // Posição inicial (SP, exemplo)
+            12f
         )
     }
 
-    val lifecycleOwner = androidx.lifecycle.compose.LocalLifecycleOwner.current
-    DisposableEffect(lifecycleOwner) {
-        val observer = LifecycleEventObserver { _, event ->
-            if (event == Lifecycle.Event.ON_RESUME) {
-                hasLocationPermission = ActivityCompat.checkSelfPermission(
-                    context, Manifest.permission.ACCESS_FINE_LOCATION
-                ) == PackageManager.PERMISSION_GRANTED
-            }
-        }
-        lifecycleOwner.lifecycle.addObserver(observer)
-        onDispose {
-            lifecycleOwner.lifecycle.removeObserver(observer)
-        }
-    }
+    val hasPermission = permissionState.status.isGranted
 
-    Scaffold(
-        topBar = {
-            CenterAlignedTopAppBar(
-                title = { Text("Mapa de Enchentes") }
-            )
-        }
-    ) { paddingValues ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
-            GoogleMap(
-                modifier = Modifier.fillMaxSize(),
-                cameraPositionState = cameraPositionState,
-                properties = MapProperties(
-                    isMyLocationEnabled = hasLocationPermission
-                ),
-                uiSettings = MapUiSettings(
-                    zoomControlsEnabled = true,
-                    myLocationButtonEnabled = true,
-                    compassEnabled = true
-                )
-            ) {
-                // Exemplo de marcador de enchente
-                Marker(
-                    state = MarkerState(position = LatLng(-30.0346, -51.2177)),
-                    title = "Ponto de Enchente",
-                    snippet = "Rua afetada por alagamento"
-                )
-
-                // ➕ Adicione mais marcadores conforme desejar
-            }
-        }
-    }
+    GoogleMap(
+        modifier = Modifier.fillMaxSize(),
+        cameraPositionState = cameraPositionState,
+        properties = MapProperties(
+            isMyLocationEnabled = hasPermission
+        )
+    )
 }
+

@@ -19,8 +19,8 @@ fun AppNavGraph(
         modifier = modifier
     ) {
         composable("home") { HomeScreen(navController) }
-//        composable("alertas") { AlertasScreen(navController) }
-        composable("mapa") { MapaScreen(navController) }
+        composable("alertas") { AlertasScreen(navController) }
+        composable("mapa") { TelaMapaScreen() }
 //        composable("abrigos") { AbrigosScreen(navController) }
 //        composable("simulacoes") { SimulacoesScreen(navController) }
 //        composable("sobre") { SobreScreen(navController) }
